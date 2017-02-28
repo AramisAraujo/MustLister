@@ -1,4 +1,3 @@
-import {CirclePicker} from 'react-color';
 
 let React = require('react');
 let FontPicker = require('react-font-picker');

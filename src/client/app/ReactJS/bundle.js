@@ -22763,7 +22763,6 @@
   \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	import { CirclePicker } from 'react-color';
 	
 	let React = __webpack_require__(/*! react */ 1);
 	let FontPicker = __webpack_require__(/*! react-font-picker */ 181);
