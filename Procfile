@@ -1,1 +1,0 @@
-web: src/client/app/index.html
