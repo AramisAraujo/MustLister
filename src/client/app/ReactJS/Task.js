@@ -4,7 +4,7 @@ let FontPicker = require('react-font-picker');
 let SubTask = require('./SubTask.js');
 let jQuery = require('jquery');
 
-const host = process.env.SPRING_DATASOURCE_URL;
+const host = process.env.DATABASE;
 
 let Task = React.createClass({
 

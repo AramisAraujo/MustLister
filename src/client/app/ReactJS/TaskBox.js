@@ -3,7 +3,7 @@ let React = require('react');
 let TaskList = require('./TaskList.js');
 let jQuery = require('jquery');
 
-const host = process.env.SPRING_DATASOURCE_URL;
+const host = process.env.DATABASE;
 
 let TaskBox = React.createClass({
 
