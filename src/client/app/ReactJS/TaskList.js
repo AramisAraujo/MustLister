@@ -2,7 +2,7 @@ let React = require('react');
 let Task = require('./Task.js');
 let jQuery = require('jquery');
 
-const host = process.env.JDBC_DATABASE_URL;
+const host = 'https://mustlisterspring.herokuapp.com';
 
 let TaskList = React.createClass({
 

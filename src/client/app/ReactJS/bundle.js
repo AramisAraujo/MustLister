@@ -21999,10 +21999,12 @@
   \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	
+	/* WEBPACK VAR INJECTION */(function(process) {
 	let React = __webpack_require__(/*! react */ 1);
 	let TaskList = __webpack_require__(/*! ./TaskList.js */ 179);
 	let jQuery = __webpack_require__(/*! jquery */ 183);
+	
+	const host = process.env.JDBC_DATABASE_URL;
 	
 	let TaskBox = React.createClass({
 				displayName: 'TaskBox',
@@ -22044,7 +22046,7 @@
 	
 				getCompletion: function (listIds) {
 	
-							let url = 'http://localhost:8080/getCompletionRate';
+							let url = host + '/getCompletionRate';
 	
 							let completion = JSON.parse(jQuery.ajax({ type: "GET", url: url, async: false }).responseText);
 	
@@ -22065,7 +22067,7 @@
 				// 			}
 				// 		});
 				//
-				// 	const url = "http://localhost:8080/saveList";
+				// 	const url = host + '/saveList";
 				//
 				// 	listData = JSON.stringify(listData[0]);
 				//
@@ -22085,7 +22087,7 @@
 				//
 				// 	listIds.map(function (listID){
 				//
-				// 		let url = "http://localhost:8080/getTaskList?id=" + listID;
+				// 		let url = host + '/getTaskList?id=" + listID;
 				//
 				// 		let listData = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 				//
@@ -22107,7 +22109,7 @@
 	
 				getListsID: function () {
 	
-							const url = "http://localhost:8080/getListsID";
+							const url = host + '/getListsID';
 	
 							let listIds = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22124,7 +22126,7 @@
 	
 							// stuff = JSON.stringify(stuff);
 	
-							let url = "http://localhost:8080/createNewList?title=";
+							let url = host + '/createNewList?title=';
 	
 							url = url + listTitle;
 	
@@ -22157,7 +22159,7 @@
 	
 				removeTaskList: function (listId) {
 	
-							const url = "http://localhost:8080/deleteList?id=" + listId;
+							const url = host + '/deleteList?id=' + listId;
 	
 							jQuery.ajax({ type: "GET", url: url, async: false });
 	
@@ -22211,6 +22213,7 @@
 	});
 	
 	module.exports = TaskBox;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../../~/process/browser.js */ 3)))
 
 /***/ },
 /* 179 */
@@ -22219,9 +22222,11 @@
   \********************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	let React = __webpack_require__(/*! react */ 1);
+	/* WEBPACK VAR INJECTION */(function(process) {let React = __webpack_require__(/*! react */ 1);
 	let Task = __webpack_require__(/*! ./Task.js */ 180);
 	let jQuery = __webpack_require__(/*! jquery */ 183);
+	
+	const host = process.env.JDBC_DATABASE_URL;
 	
 	let TaskList = React.createClass({
 				displayName: 'TaskList',
@@ -22247,7 +22252,7 @@
 	
 				loadTasksList: function (id) {
 	
-							const url = 'http://localhost:8080/getTLTasksID?id=' + id;
+							const url = host + '/getTLTasksID?id=' + id;
 	
 							let tasksId = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22256,7 +22261,7 @@
 	
 				loadTitle: function (id) {
 	
-							const url = 'http://localhost:8080/getTLTitle?id=' + id;
+							const url = host + '/getTLTitle?id=' + id;
 	
 							let title = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22265,7 +22270,7 @@
 	
 				handleTaskSubmit: function (title) {
 	
-							let url = 'http://localhost:8080/createTask?title=' + title;
+							let url = host + '/createTask?title=' + title;
 	
 							url = url + '&listId=' + this.state.id;
 	
@@ -22290,7 +22295,7 @@
 										return id !== taskID;
 							});
 	
-							let url = 'http://localhost:8080/removeTask?id=' + this.state.id;
+							let url = host + '/removeTask?id=' + this.state.id;
 	
 							url = url + '&taskId=' + taskID;
 	
@@ -22325,7 +22330,7 @@
 	
 							taskIdList.map(function (taskId) {
 	
-										const url = 'http://localhost:8080/getTaskCompletion?id=' + taskId;
+										const url = host + '/getTaskCompletion?id=' + taskId;
 	
 										let completed = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22448,7 +22453,7 @@
 	
 							let lowTasks = tasksList.filter(function (taskId) {
 	
-										const url = 'http://localhost:8080/getTaskPrio?id=' + taskId;
+										const url = host + '/getTaskPrio?id=' + taskId;
 	
 										let priority = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22464,7 +22469,7 @@
 	
 							let medTasks = tasksList.filter(function (taskId) {
 	
-										const url = 'http://localhost:8080/getTaskPrio?id=' + taskId;
+										const url = host + '/getTaskPrio?id=' + taskId;
 	
 										let priority = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22480,7 +22485,7 @@
 	
 							let highTasks = tasksList.filter(function (taskId) {
 	
-										const url = 'http://localhost:8080/getTaskPrio?id=' + taskId;
+										const url = host + '/getTaskPrio?id=' + taskId;
 	
 										let priority = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22503,7 +22508,7 @@
 							let tasksTitleAndId = [];
 	
 							taskIds.map(function (id) {
-										const url = 'http://localhost:8080/getTaskTitle?id=' + id;
+										const url = host + '/getTaskTitle?id=' + id;
 	
 										let title = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22556,7 +22561,7 @@
 							newTitle = newTitle.trim();
 	
 							if (newTitle != "") {
-										let url = 'http://localhost:8080/changeTLTitle?id=' + id;
+										let url = host + '/changeTLTitle?id=' + id;
 	
 										url = url + '&title=' + newTitle;
 										jQuery.ajax({ type: "GET", url: url, async: false });
@@ -22590,7 +22595,7 @@
 							if (prio != "") {
 										taskIdList = taskIdList.filter(function (taskId) {
 	
-													const url = 'http://localhost:8080/getTaskPrio?id=' + taskId;
+													const url = host + '/getTaskPrio?id=' + taskId;
 	
 													let priority = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22601,7 +22606,7 @@
 							if (tagFilter != "") {
 										taskIdList = taskIdList.filter(function (taskId) {
 	
-													const url = 'http://localhost:8080/getTaskTags?id=' + taskId;
+													const url = host + '/getTaskTags?id=' + taskId;
 	
 													let tags = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22755,6 +22760,7 @@
 	});
 	
 	module.exports = TaskList;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../../~/process/browser.js */ 3)))
 
 /***/ },
 /* 180 */
@@ -22763,11 +22769,13 @@
   \****************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	
+	/* WEBPACK VAR INJECTION */(function(process) {
 	let React = __webpack_require__(/*! react */ 1);
 	let FontPicker = __webpack_require__(/*! react-font-picker */ 181);
 	let SubTask = __webpack_require__(/*! ./SubTask.js */ 182);
 	let jQuery = __webpack_require__(/*! jquery */ 183);
+	
+	const host = process.env.JDBC_DATABASE_URL;
 	
 	let Task = React.createClass({
 		displayName: 'Task',
@@ -22793,7 +22801,7 @@
 	
 		loadTags(id) {
 	
-			const url = 'http://localhost:8080/getTaskTags?id=' + id;
+			const url = host + '/getTaskTags?id=' + id;
 	
 			let tags = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22802,7 +22810,7 @@
 	
 		loadColor(id) {
 	
-			const url = 'http://localhost:8080/getTaskColor?id=' + id;
+			const url = host + '/getTaskColor?id=' + id;
 	
 			let color = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22811,7 +22819,7 @@
 	
 		loadTitle(id) {
 	
-			const url = 'http://localhost:8080/getTaskTitle?id=' + id;
+			const url = host + '/getTaskTitle?id=' + id;
 	
 			let title = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22820,7 +22828,7 @@
 	
 		loadFont(id) {
 	
-			const url = 'http://localhost:8080/getTaskFont?id=' + id;
+			const url = host + '/getTaskFont?id=' + id;
 	
 			let font = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22828,7 +22836,7 @@
 		},
 		loadSubtaskList(id) {
 	
-			const url = 'http://localhost:8080/getTaskSTList?id=' + id;
+			const url = host + '/getTaskSTList?id=' + id;
 	
 			let subtasks = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22836,7 +22844,7 @@
 		},
 		loadCompletion(id) {
 	
-			const url = 'http://localhost:8080/getTaskCompletion?id=' + id;
+			const url = host + '/getTaskCompletion?id=' + id;
 	
 			let completion = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22844,7 +22852,7 @@
 		},
 		loadDesc(id) {
 	
-			const url = 'http://localhost:8080/getTaskDesc?id=' + id;
+			const url = host + '/getTaskDesc?id=' + id;
 	
 			let desc = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22852,7 +22860,7 @@
 		},
 		loadPriority(id) {
 	
-			const url = 'http://localhost:8080/getTaskPrio?id=' + id;
+			const url = host + '/getTaskPrio?id=' + id;
 	
 			let priority = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -22871,7 +22879,7 @@
 	
 			let completed = this.state.completed === true ? false : true;
 	
-			let url = 'http://localhost:8080/changeTaskCompletion?id=' + this.state.id;
+			let url = host + '/changeTaskCompletion?id=' + this.state.id;
 	
 			url = url + '&completed=' + completed;
 			jQuery.ajax({ type: "GET", url: url, async: false });
@@ -22884,7 +22892,7 @@
 	
 			this.setState({ color: newColor.hex });
 	
-			let url = 'http://localhost:8080/changeTaskColor?id=' + this.state.id;
+			let url = host + '/changeTaskColor?id=' + this.state.id;
 			url = url + '&color=' + newColor.hex;
 	
 			jQuery.ajax({ type: "GET", url: url, async: false });
@@ -22894,7 +22902,7 @@
 	
 			this.setState({ font: newFont });
 	
-			let url = 'http://localhost:8080/changeTaskFont?id=' + this.state.id;
+			let url = host + '/changeTaskFont?id=' + this.state.id;
 			url = url + '&font=' + newFont;
 	
 			jQuery.ajax({ type: "GET", url: url, async: false });
@@ -22914,7 +22922,7 @@
 	
 				// this.props.updateTagTask(this.state.id, tags);
 	
-				let url = 'http://localhost:8080/addTaskTag?id=' + this.state.id;
+				let url = host + '/addTaskTag?id=' + this.state.id;
 				url = url + '&tag=' + tagTitle;
 	
 				jQuery.ajax({ type: "GET", url: url, async: false });
@@ -22931,7 +22939,7 @@
 	
 				let color = this.getPriorityColor(newPriority);
 	
-				let url = 'http://localhost:8080/changeTaskPrio?id=' + this.state.id;
+				let url = host + '/changeTaskPrio?id=' + this.state.id;
 				url = url + '&prio=' + newPriority;
 	
 				jQuery.ajax({ type: "GET", url: url, async: false });
@@ -22968,7 +22976,7 @@
 				this.refs.description.value = description;
 				// this.props.updateDesc(this.state.id, description);
 	
-				let url = 'http://localhost:8080/changeTaskDesc?id=' + this.state.id;
+				let url = host + '/changeTaskDesc?id=' + this.state.id;
 				url = url + '&desc=' + description;
 	
 				jQuery.ajax({ type: "GET", url: url, async: false });
@@ -22979,7 +22987,7 @@
 	
 			let title = prompt("Insert new SubTask Title:", "SubTask Title");
 	
-			let url = 'http://localhost:8080/createST?title=' + title;
+			let url = host + '/createST?title=' + title;
 	
 			url = url + '&taskId=' + this.state.id;
 	
@@ -22998,7 +23006,7 @@
 				return id != subtaskID;
 			});
 	
-			const url = 'http://localhost:8080/delST?id=' + subtaskID;
+			const url = host + '/delST?id=' + subtaskID;
 	
 			jQuery.ajax({ type: "GET", url: url, async: false });
 	
@@ -23011,8 +23019,8 @@
 				return;
 			}
 	
-			let urlGetTitle = 'http://localhost:8080/getSTTitle?id=';
-			let urlGetChecked = 'http://localhost:8080/getSTChecked?id=';
+			let urlGetTitle = host + '/getSTTitle?id=';
+			let urlGetChecked = host + '/getSTChecked?id=';
 	
 			let subtasksToRender = this.state.subtasks.map(function (subtaskID) {
 	
@@ -23051,7 +23059,7 @@
 				return tagTitle != tagToRemove.toLowerCase();
 			});
 	
-			let url = 'http://localhost:8080/delTaskTag?id=' + this.state.id;
+			let url = host + '/delTaskTag?id=' + this.state.id;
 	
 			url = url + '&tag=' + tagToRemove.toLowerCase();
 			jQuery.ajax({ type: "GET", url: url, async: false });
@@ -23128,6 +23136,7 @@
 	});
 	
 	module.exports = Task;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../../~/process/browser.js */ 3)))
 
 /***/ },
 /* 181 */
@@ -23340,8 +23349,10 @@
   \*******************************************/
 /***/ function(module, exports, __webpack_require__) {
 
-	let React = __webpack_require__(/*! react */ 1);
+	/* WEBPACK VAR INJECTION */(function(process) {let React = __webpack_require__(/*! react */ 1);
 	let jQuery = __webpack_require__(/*! jquery */ 183);
+	
+	const host = process.env.JDBC_DATABASE_URL;
 	
 	let SubTask = React.createClass({
 		displayName: 'SubTask',
@@ -23363,7 +23374,7 @@
 	
 		getStatChecked(id) {
 	
-			const url = 'http://localhost:8080/getSTChecked?id=' + id;
+			const url = host + '/getSTChecked?id=' + id;
 	
 			let checked = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
@@ -23371,7 +23382,7 @@
 		},
 	
 		getStatTitle(id) {
-			const url = 'http://localhost:8080/getSTTitle?id=' + id;
+			const url = host + '/getSTTitle?id=' + id;
 			let title = jQuery.ajax({ type: "GET", url: url, async: false }).responseText;
 	
 			return title;
@@ -23381,7 +23392,7 @@
 	
 			let isChecked = this.state.checked === true ? false : true;
 	
-			let url = 'http://localhost:8080/changeSTChecked?id=' + this.state.id;
+			let url = host + '/changeSTChecked?id=' + this.state.id;
 	
 			url = url + '&checked=' + isChecked;
 	
@@ -23418,6 +23429,7 @@
 	});
 	
 	module.exports = SubTask;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(/*! ./../../../../~/process/browser.js */ 3)))
 
 /***/ },
 /* 183 */

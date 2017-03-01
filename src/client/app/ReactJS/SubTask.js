@@ -1,7 +1,7 @@
 let React = require('react');
 let jQuery = require('jquery');
 
-const host = process.env.JDBC_DATABASE_URL;
+const host = 'https://mustlisterspring.herokuapp.com';
 
 let SubTask = React.createClass({
 
