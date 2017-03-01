@@ -2,6 +2,8 @@ let React = require('react');
 let Task = require('./Task.js');
 let jQuery = require('jquery');
 
+const host = process.env.DATABASE_URL;
+
 let TaskList = React.createClass({
 
 	getInitialState: function () {
@@ -24,7 +26,7 @@ let TaskList = React.createClass({
 
     loadTasksList: function (id) {
 
-        const url = 'http://localhost:8080/getTLTasksID?id='+ id;
+        const url = host + '/getTLTasksID?id='+ id;
 
         let tasksId = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
@@ -34,7 +36,7 @@ let TaskList = React.createClass({
 
     loadTitle: function (id) {
 
-        const url = 'http://localhost:8080/getTLTitle?id='+ id;
+        const url = host + '/getTLTitle?id='+ id;
 
         let title = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
@@ -44,7 +46,7 @@ let TaskList = React.createClass({
 
 	handleTaskSubmit: function (title) {
 
-        let url = 'http://localhost:8080/createTask?title='+ title;
+        let url = host + '/createTask?title='+ title;
 
         url = url + '&listId=' + this.state.id;
 
@@ -71,7 +73,7 @@ let TaskList = React.createClass({
 		});
 
 
-        let url = 'http://localhost:8080/removeTask?id='+ this.state.id;
+        let url = host + '/removeTask?id='+ this.state.id;
 
         url = url + '&taskId='+taskID;
 
@@ -110,7 +112,7 @@ let TaskList = React.createClass({
 
 		taskIdList.map(function (taskId) {
 
-            const url = 'http://localhost:8080/getTaskCompletion?id='+ taskId;
+            const url = host + '/getTaskCompletion?id='+ taskId;
 
             let completed = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
@@ -237,7 +239,7 @@ let TaskList = React.createClass({
 
 		let lowTasks = tasksList.filter(function (taskId) {
 
-            const url = 'http://localhost:8080/getTaskPrio?id='+ taskId;
+            const url = host + '/getTaskPrio?id='+ taskId;
 
             let priority = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
@@ -254,7 +256,7 @@ let TaskList = React.createClass({
 
         let medTasks = tasksList.filter(function (taskId) {
 
-            const url = 'http://localhost:8080/getTaskPrio?id='+ taskId;
+            const url = host + '/getTaskPrio?id='+ taskId;
 
             let priority = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
@@ -271,7 +273,7 @@ let TaskList = React.createClass({
 
         let highTasks = tasksList.filter(function (taskId) {
 
-            const url = 'http://localhost:8080/getTaskPrio?id='+ taskId;
+            const url = host + '/getTaskPrio?id='+ taskId;
 
             let priority = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
@@ -297,7 +299,7 @@ let TaskList = React.createClass({
 		let tasksTitleAndId = [];
 
 		taskIds.map(function (id) {
-            const url = 'http://localhost:8080/getTaskTitle?id='+ id;
+            const url = host + '/getTaskTitle?id='+ id;
 
             let title = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
@@ -360,7 +362,7 @@ let TaskList = React.createClass({
 		newTitle = newTitle.trim();
 
 		if(newTitle != ""){
-            let url = 'http://localhost:8080/changeTLTitle?id='+ id;
+            let url = host + '/changeTLTitle?id='+ id;
 
             url = url + '&title=' + newTitle;
             jQuery.ajax({ type: "GET", url: url, async: false});
@@ -395,7 +397,7 @@ let TaskList = React.createClass({
 		if(prio != ""){
 			taskIdList = taskIdList.filter(function (taskId){
 
-                const url = 'http://localhost:8080/getTaskPrio?id='+ taskId;
+                const url = host + '/getTaskPrio?id='+ taskId;
 
                 let priority = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
@@ -406,7 +408,7 @@ let TaskList = React.createClass({
 		if(tagFilter != ""){
 			taskIdList = taskIdList.filter(function (taskId){
 
-                const url = 'http://localhost:8080/getTaskTags?id='+ taskId;
+                const url = host + '/getTaskTags?id='+ taskId;
 
                 let tags = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 

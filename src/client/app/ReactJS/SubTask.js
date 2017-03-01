@@ -1,6 +1,8 @@
 let React = require('react');
 let jQuery = require('jquery');
 
+const host = process.env.DATABASE_URL;
+
 let SubTask = React.createClass({
 
 	getInitialState: function() {
@@ -19,7 +21,7 @@ let SubTask = React.createClass({
 
     getStatChecked(id){
 
-	    const url = 'http://localhost:8080/getSTChecked?id='+ id;
+	    const url = host+'/getSTChecked?id='+ id;
 
         let checked = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
@@ -27,7 +29,7 @@ let SubTask = React.createClass({
     },
 
     getStatTitle(id){
-      const url = 'http://localhost:8080/getSTTitle?id='+ id;
+      const url = host + '/getSTTitle?id='+ id;
       let title = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
       return title;
@@ -37,7 +39,7 @@ let SubTask = React.createClass({
 
 		let isChecked = this.state.checked === true ? false : true;
 
-        let url = 'http://localhost:8080/changeSTChecked?id='+ this.state.id;
+        let url = host + '/changeSTChecked?id='+ this.state.id;
 
         url = url + '&checked=' + isChecked;
 

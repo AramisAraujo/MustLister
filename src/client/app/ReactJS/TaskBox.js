@@ -3,6 +3,8 @@ let React = require('react');
 let TaskList = require('./TaskList.js');
 let jQuery = require('jquery');
 
+const host = process.env.DATABASE_URL;
+
 let TaskBox = React.createClass({
 
 	getInitialState: function(){
@@ -42,7 +44,7 @@ let TaskBox = React.createClass({
 
 	getCompletion: function(listIds){
 
-	    let url = 'http://localhost:8080/getCompletionRate';
+	    let url = host + '/getCompletionRate';
 
 		let completion = JSON.parse(jQuery.ajax({ type: "GET", url: url, async: false}).responseText);
 
@@ -64,7 +66,7 @@ let TaskBox = React.createClass({
 	// 			}
 	// 		});
     //
-	// 	const url = "http://localhost:8080/saveList";
+	// 	const url = host + '/saveList";
     //
 	// 	listData = JSON.stringify(listData[0]);
     //
@@ -84,7 +86,7 @@ let TaskBox = React.createClass({
     //
 	// 	listIds.map(function (listID){
     //
-	// 		let url = "http://localhost:8080/getTaskList?id=" + listID;
+	// 		let url = host + '/getTaskList?id=" + listID;
     //
 	// 		let listData = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
     //
@@ -106,7 +108,7 @@ let TaskBox = React.createClass({
 
 	getListsID: function(){
 
-		const url = "http://localhost:8080/getListsID";
+		const url = host + '/getListsID';
 
 		let listIds = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
@@ -123,7 +125,7 @@ let TaskBox = React.createClass({
 
 		// stuff = JSON.stringify(stuff);
 
-		let  url = "http://localhost:8080/createNewList?title=";
+		let  url = host + '/createNewList?title=';
 
 		url = url + listTitle;
 
@@ -159,7 +161,7 @@ let TaskBox = React.createClass({
 
 	removeTaskList: function(listId){
 
-		const url = "http://localhost:8080/deleteList?id=" + listId;
+		const url = host + '/deleteList?id=' + listId;
 
 		jQuery.ajax({ type: "GET", url: url, async: false});
 
