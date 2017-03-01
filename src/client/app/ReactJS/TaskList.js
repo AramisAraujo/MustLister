@@ -31,7 +31,10 @@ let TaskList = React.createClass({
 
 		url = url + '?id=' + this.state.id;
 
-		let data = jq;
+		let data = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
+
+		data = JSON.parse(data);
+
 		let filename = this.state.title + '.csv';
 
 		return (fileDownload(data, filename));
