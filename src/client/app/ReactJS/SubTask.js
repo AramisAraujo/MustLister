@@ -1,7 +1,7 @@
 let React = require('react');
 let jQuery = require('jquery');
 
-const host = process.env.DATABASE;
+const host = process.env.JDBC_DATABASE_URL;
 
 let SubTask = React.createClass({
 

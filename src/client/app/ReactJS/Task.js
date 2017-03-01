@@ -4,7 +4,7 @@ let FontPicker = require('react-font-picker');
 let SubTask = require('./SubTask.js');
 let jQuery = require('jquery');
 
-const host = process.env.DATABASE;
+const host = process.env.JDBC_DATABASE_URL;
 
 let Task = React.createClass({
 
