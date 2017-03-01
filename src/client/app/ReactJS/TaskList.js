@@ -33,7 +33,11 @@ let TaskList = React.createClass({
 
 		let data = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
 
+		console.log(data);
+
 		data = JSON.parse(data);
+
+		console.log(data);
 
 		let filename = this.state.title + '.csv';
 
