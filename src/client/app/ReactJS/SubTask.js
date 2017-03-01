@@ -47,8 +47,6 @@ let SubTask = React.createClass({
 
 		this.setState({checked: isChecked});
 
-		// this.props.update(this.state.title, isChecked);
-
 	},
 
 	delete: function(){

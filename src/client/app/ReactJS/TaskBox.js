@@ -29,19 +29,6 @@ let TaskBox = React.createClass({
 
 	},
 
-	// saveLists: function(){
-    //
-	//     //take a look
-    //
-	// 	let listIds = this.getListsID();
-    //
-	// 	listsIds.map(function (id){
-	// 		saveListId(id);
-	// 	});
-    //
-    //
-	// },
-
 	getCompletion: function(listIds){
 
 	    let url = host + '/getCompletionRate';
@@ -51,60 +38,6 @@ let TaskBox = React.createClass({
 		return Math.ceil(completion * 100);
 
 	},
-
-	// saveListId: function(listID, newData){
-    //
-	// 	this.updateData();
-    //
-	// 	let listsData = this.state.listsData;
-    //
-	// 	let listData = listsData.filter(function (listItem){
-    //
-	// 			if(listItem.id == listID){
-	// 				listItem.data = newData;
-	// 				return true;
-	// 			}
-	// 		});
-    //
-	// 	const url = host + '/saveList";
-    //
-	// 	listData = JSON.stringify(listData[0]);
-    //
-	// 	jQuery.ajax({ type: "POST", url: url, data:listData, contentType: "application/json"});
-    //
-	// 	this.updateData();
-    //
-	// },
-
-	// fetchLists: function(){
-	//
-	//     //get only the ids
-    //
-	// 	let listIds = this.getListsID();
-    //
-	// 	let listsData = [];
-    //
-	// 	listIds.map(function (listID){
-    //
-	// 		let url = host + '/getTaskList?id=" + listID;
-    //
-	// 		let listData = jQuery.ajax({ type: "GET", url: url, async: false}).responseText;
-    //
-	// 		listData = JSON.parse(listData);
-    //
-	// 		listsData.push(listData);
-    //
-	// 	})
-    //
-	// 	function compareID(a,b) {
-  	// 		return parseInt(a.id) - parseInt(b.id);
-	// 	}
-    //
-	// 	listsData = listsData.sort(compareID);
-    //
-	// 	return listsData;
-    //
-	// },
 
 	getListsID: function(){
 
@@ -119,30 +52,17 @@ let TaskBox = React.createClass({
 
 		let listTitle = prompt("Insert new TaskList Title","TaskList Title");
 
-		// let id = this.generateID();
-
-		// let stuff = ({"id":id,"title":listTitle,"data":{}});
-
-		// stuff = JSON.stringify(stuff);
-
 		let  url = host + '/createNewList?title=';
 
 		url = url + listTitle;
 
 	    jQuery.ajax({ type: "GET", url: url, async:false});
 
-		// this.setState({lastUpdated:id});
-
 		this.updateData();
 
 		this.forceUpdate();
 
 	},
-
-	// generateID: function () {
-    //
-	// 	return Date.now().toString();
-	// },
 
 	renderTaskLists: function(){
 

@@ -150,8 +150,6 @@ let Task = React.createClass({
 
 			this.setState({tags:tags});
 
-			// this.props.updateTagTask(this.state.id, tags);
-
             let url = host + '/addTaskTag?id='+ this.state.id;
             url = url +'&tag=' + tagTitle;
 
@@ -212,7 +210,6 @@ let Task = React.createClass({
 
 			this.setState({description:description});
 			this.refs.description.value = description;
-			// this.props.updateDesc(this.state.id, description);
 
             let url = host + '/changeTaskDesc?id='+ this.state.id;
             url = url +'&desc=' + description;

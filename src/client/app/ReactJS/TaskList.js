@@ -1,6 +1,7 @@
 let React = require('react');
 let Task = require('./Task.js');
 let jQuery = require('jquery');
+let fileDownload = require('react-file-download');
 
 const host = 'https://mustlisterspring.herokuapp.com';
 
@@ -22,6 +23,19 @@ let TaskList = React.createClass({
 			filterTag: "",
 			filterPriority:""
 		};
+	},
+
+	downloadList: function(){
+
+		let url = host + '/getListToDownload';
+
+		url = url + '?id=' + this.state.id;
+
+		let data = jq;
+		let filename = this.state.title + '.csv';
+
+		return (fileDownload(data, filename));
+
 	},
 
     loadTasksList: function (id) {
@@ -139,89 +153,6 @@ let TaskList = React.createClass({
 		return Math.ceil(completionRate);
 
 	},
-
-	// handleTaskCompletion: function(taskID, taskIsCompleted) {
-    //
-	// 	this.state.data.map(function (taskItem) {
-    //
-	// 		if(taskItem.id == taskID){
-    //
-	// 			taskItem.completed = taskIsCompleted;
-	// 		}
-    //
-	// 	}, this);
-    //
-	// 	let newData = this.state.data;
-    //
-	// 	this.updateCompletion(newData);
-    //
-	// },
-    //
-	// handleTaskDescUpdate: function(taskID, newDescription) {
-    //
-	// 	let data = this.state.data;
-    //
-	// 	data.map(function (taskItem) {
-    //
-	// 		if(taskItem.id == taskID){
-    //
-	// 			taskItem.description = newDescription;
-	// 		}
-    //
-	// 	}, this);
-    //
-	// 	this.props.saveList(this.state.id, data);
-    //
-	// },
-	// handleTaskTagUpdate: function(taskID, newTags) {
-    //
-	// 	let data = this.state.data;
-	// 	data.map(function (taskItem) {
-    //
-	// 		if(taskItem.id == taskID){
-    //
-	// 			taskItem.tags = newTags;
-	// 		}
-    //
-	// 	}, this);
-    //
-	// 	this.props.saveList(this.state.id, data);
-    //
-	// },
-    //
-	// handleTaskSubUpdate: function(taskID,subtaskData){
-    //
-	// 	let data = this.state.data;
-    //
-	// 	data.map(function (taskItem) {
-    //
-	// 		if(taskItem.id == taskID){
-	// 			taskItem.subtasks = subtaskData;
-	// 		}
-    //
-	// 	}, this);
-    //
-	// 	this.props.saveList(this.state.id, data);
-    //
-	// },
-    //
-	// handleTaskPrioUpdate: function(taskID,newPriority){
-    //
-	// 	let data = this.state.data;
-    //
-	// 	data.map(function (taskItem) {
-    //
-	// 	if(taskItem.id == taskID){
-    //
-	// 		taskItem.priority = newPriority;
-	// 		}
-    //
-	// 	}, this);
-    //
-	// 	this.props.saveList(this.state.id, data);
-    //
-	// },
-
 
 	sortTaskPriority: function() {
 
@@ -372,23 +303,6 @@ let TaskList = React.createClass({
 
 	},
 
-	// handleColorChange: function(taskID, newColor){
-    //
-	// 	let data = this.state.data;
-    //
-	// 	data.map(function (taskItem) {
-    //
-	// 	if(taskItem.id == taskID){
-    //
-	// 		taskItem.color = newColor;
-	// 		}
-    //
-	// 	}, this);
-    //
-	// 	this.props.saveList(this.state.id, data);
-    //
-	// },
-
 	renderTasks: function(taskIdList){
 
 		let prio = this.state.filterPriority;
@@ -467,6 +381,7 @@ let TaskList = React.createClass({
 
 				<button type="button" style={{backgroundColor: "turquoise"}} onClick={this.filterByPriority.bind(this,"")}>Reset Priority Filter</button>
 				<button type="button" style={{backgroundColor: "turquoise"}} onClick={this.filterByTag.bind(this,true)}>Reset Tag Filter</button>
+				<button type="button" style={{backgroundColor: "aqua"}} onClick={this.downloadList}>Download This List</button>
 				<a type="button"className="close-ribbon" onClick={this.removeList}>&times;</a>
 			</ul>
 			);
