@@ -8,7 +8,10 @@
     "dev": "webpack -d --watch",
     "start": "webpack -d && node server.js"
   },
-  "author": "",
+  "engines": {
+    "node": "6.11.1"
+  },
+  "author": "Aramis Araujo",
   "license": "ISC",
   "dependencies": {
     "babel-loader": "^6.2.8",
