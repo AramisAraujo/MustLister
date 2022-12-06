@@ -23,7 +23,7 @@
     "react-dom": "^15.4.1",
     "react-file-download": "^0.3.2",
     "react-font-picker": "^1.1.5",
-    "react-http-request": "^1.0.3",
+    "react-http-request": "^2.0.0",
     "webpack": "^4.41.2"
   },
   "devDependencies": {
